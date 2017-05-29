@@ -26,6 +26,7 @@
 	<input type="hidden" name="op" value="${param.op}"/>
 	
 </fieldset>
+<span>${requestScope.errores}</span> <!-- te saca el error de ProductosFromServlet-->
 	
 	</form>
 	

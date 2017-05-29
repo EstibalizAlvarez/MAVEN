@@ -43,16 +43,16 @@ public class LoginServlet extends HttpServlet {
 		usuario.setNombre(nombre);
 		usuario.setPass(pass);
 
-		// Llamada a l�gica de negocio
+		// Llamada a logica de negocio
 		ServletContext application = request.getServletContext();
 
-		UsuariosDAL usuariosDAL = (UsuariosDAL) application.getAttribute(AltaServlet.USUARIOS_DAL);
+		UsuariosDAL usuariosDAL = (UsuariosDAL) application.getAttribute("dalUsuarios");
 
 		if (usuariosDAL == null) {
 			usuariosDAL = DALFactory.getUsuariosDAL();
 		}
 
-		// S�lo para crear una base de datos falsa con el
+		// Solo para crear una base de datos falsa con el
 		// contenido de un usuario "javi", "lete"
 		// usuarioDAL.alta(new Usuario("javi", "lete"));
 

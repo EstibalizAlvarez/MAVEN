@@ -17,7 +17,7 @@ public class UsuariosDALColeccion implements UsuariosDAL {// TE COLOCAS EN USUAR
 	}
 
 	public boolean validar(Usuario usuario) {
-		return usuarios.containsValue(usuario);
+		return usuarios.containsKey(usuario.getNombre());
 	}
 
 	public void modificar(Usuario usuario) {

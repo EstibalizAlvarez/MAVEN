@@ -16,8 +16,8 @@
 	<nav>
 		<ul>
 			<li><a href="login">Login</a></li>
-			<li><a href="usuarioform?op=alta">Alta</a></li>
+			
 			<li><a href="login?opcion=logout">Salir</a></li>
-			<li><a href="usuariocrud">Mantenimiento usuarios</a></li>
+			<li><a href="ListadoProductosServlet">Mantenimiento productos</a></li><!-- aqui le pones el vinculo a la servlet y el titulos del boton. -->
 		</ul>
 	</nav>

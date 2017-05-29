@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.catalogoapp.dal.ProductosDal;
+import com.ipartek.formacion.catalogoapp.dal.ProductosYAExistenteDALException;
 import com.ipartek.formacion.catalogoapp.tipos.Productos1;
 
 @WebServlet("/ProductosFormServlet")
@@ -50,9 +51,19 @@ public class ProductosFormServlet extends HttpServlet {
 		}
 		switch (op) {
 		case "alta":// si es alta le pides al bibliotecario que le da de alta.
-			dal.alta(datos);
+
+			try {
+				dal.alta(datos);
+			} catch (ProductosYAExistenteDALException fallo) {// te pilla el fallo que el producto ya existe y te va a la lista de productos.
+
+				request.setAttribute("errores", "El ID del producto ya existe, por favor cambialo.");//
+				System.out.println("El ID del producto ya existe, por favor cambialo.");
+				IrFormulario.forward(request, response);// te va al formulario y te sale el mensaje de la reques de arriba.
+				return;// te lo saca por pantalla.
+			}
 			response.sendRedirect("ListadoProductosServlet");// una vez que te de alta te envie a la pagina de productosCrud.
 			break;
+
 		case "modificar":
 			dal.modificar(datos);
 			response.sendRedirect("ListadoProductosServlet");// una vez que te modificar te envie a la pagina de productosCrud.

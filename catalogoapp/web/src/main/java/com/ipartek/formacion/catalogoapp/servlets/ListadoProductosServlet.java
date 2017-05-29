@@ -53,16 +53,18 @@ public class ListadoProductosServlet extends HttpServlet {
 			switch (op) {
 			case "alta":
 				request.getRequestDispatcher(RUTA_FORMULARIO).forward(request, response);
-
+				break;
 			case "modificar":
 				productoElegido = acciones.buscarPorId(id);
 				request.setAttribute("productos1", productoElegido);// pasame los atributos de listaProductos al campo ListaProductos.
 				request.getRequestDispatcher(RUTA_FORMULARIO).forward(request, response);
-				;
 				break;
-			case "baja":
+			case "borrar":
 				productoElegido = acciones.buscarPorId(id);
-				acciones.baja(productoElegido);// de las acciones de ProductosDal te coge el baja y te borra de la lista de productos.
+				System.out.println(productoElegido);
+
+				// acciones.baja(productoElegido);// de las acciones de ProductosDal te coge el baja y te borra de la lista de productos.
+				request.setAttribute("productos1", productoElegido);// pasame los atributos de listaProductos al campo ListaProductos.
 				request.getRequestDispatcher(RUTA_FORMULARIO).forward(request, response);
 				// request.getRequestDispatcher(ListadoProductosServlet.LISTADO_PRODUCTOS).forward(request, response);
 				// response.sendRedirect("ListadoProductosServlet");

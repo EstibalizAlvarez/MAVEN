@@ -30,7 +30,8 @@ public class ArranqueAplicacion implements ServletContextListener {
 		UsuariosDAL dalUsuarios = DALFactory.getUsuariosDAL();//
 
 		dalUsuarios.alta(new Usuario("usuario1", "pass1"));// dar de alta a un usuario. con el nombre "usuario1" y contrase�a "pass1"
-		dalUsuarios.alta(new Usuario("usuario2", "pass2"));//
+		dalUsuarios.alta(new Usuario("usuario2", "pass2"));
+		dalUsuarios.alta(new Usuario("admin", "admin"));
 
 		application.setAttribute("dalUsuarios", dalUsuarios);// tarjeta visita. siemptre al mismo.
 
