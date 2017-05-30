@@ -10,12 +10,17 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/usuariocrud" })
+import com.ipartek.formacion.catalogoapp.tipos.Usuario;
+
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/ListadoProductosServlet" })
 public class FiltroAcceso implements Filter {
 
 	/* package */static final String RUTA = "/WEB-INF/vistas/";
 	private static final String RUTA_LOGIN = RUTA + "login.jsp";
+	private static final String RUTA_LISTA = RUTA + "Productoslista.jsp";
 
 	public FiltroAcceso() {
 		// TODO Auto-generated constructor stub
@@ -27,8 +32,14 @@ public class FiltroAcceso implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// mandar de principio a login:
-		request.getRequestDispatcher(RUTA_LOGIN).forward(request, response);
-
+		System.out.println("pajaritoooooooooooooo");
+		// para hacer el filtro:
+		HttpSession session = ((HttpServletRequest) request).getSession();
+		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuario");
+		if ("admin".equals(usuarioLogeado.getNombre()))//
+			request.getRequestDispatcher("ListadoProductosServlet").forward(request, response);
+		else
+			request.getRequestDispatcher("ProductosListaServlet").forward(request, response);
 		chain.doFilter(request, response);
 	}
 

@@ -4,7 +4,7 @@
 
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %><!-- para que te reconozca codigo jsp. -->
 
-<h2>MANTENIMIENTO DE PRODUCTOS</h2> <!-- TITULO -->
+<h2>MANTENIMIENTO DE PRODUCTOS. Aqui puedes dar de alta, borrar o modificar productos.</h2> <!-- TITULO -->
 <!-- Crear la tabla -->
 <table border="1">
 	<thead>

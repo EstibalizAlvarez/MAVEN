@@ -13,14 +13,24 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/WEB-INF/vistas/includes/cabecera.jsp");
+    _jspx_dependants.add("/WEB-INF/vistas/includes/cabecerausuario.jsp");
     _jspx_dependants.add("/WEB-INF/vistas/includes/pie.jsp");
   }
+
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
     return _jspx_dependants;
+  }
+
+  public void _jspInit() {
+    _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+  }
+
+  public void _jspDestroy() {
+    _jspx_tagPool_c_if_test.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -60,25 +70,32 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta charset=\"UTF-8\" />\r\n");
-      out.write("<title>Ejemplo MVC</title>\r\n");
+      out.write("<title>CabeceraUsuario</title>\r\n");
       out.write("<link rel=\"stylesheet\" href=\"css/estilos.css\" />\r\n");
       out.write("<script src=\"js/funciones.js\"></script>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
+      out.write("\r\n");
+      out.write("<!-- es la biblioteca de C:if o c: foreach.. -->\r\n");
       out.write("\t<header>\r\n");
-      out.write("\t\t<h1>Ejemplo MVC</h1>\r\n");
-      out.write("\t\t<p>Ejemplos de uso de MVC con diferentes técnicas</p>\r\n");
+      out.write("\t\t<h1>Bienvenido.</h1>\r\n");
+      out.write("\t\t<p>Aqui puedes acceder a:</p>\r\n");
       out.write("\t</header>\r\n");
       out.write("\t<nav>\r\n");
       out.write("\t\t<ul>\r\n");
-      out.write("\t\t\t<li><a href=\"login\">Login</a></li>\r\n");
-      out.write("\t\t\t\r\n");
       out.write("\t\t\t<li><a href=\"login?opcion=logout\">Salir</a></li>\r\n");
-      out.write("\t\t\t<li><a href=\"ListadoProductosServlet\">Mantenimiento productos</a></li><!-- aqui le pones el vinculo a la servlet y el titulos del boton. -->\r\n");
+      out.write("\t\t\t");
+      if (_jspx_meth_c_if_0(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("\t\t\t");
+      if (_jspx_meth_c_if_1(_jspx_page_context))
+        return;
+      out.write("\r\n");
       out.write("\t\t</ul>\r\n");
       out.write("\t</nav>");
       out.write("\r\n");
-      out.write("\t<h1>Principal</h1>\r\n");
+      out.write("\t<h1>Esta es la pagina principal.jsp</h1>\r\n");
       out.write("\t");
       com.ipartek.formacion.catalogoapp.tipos.Usuario usuario = null;
       synchronized (session) {
@@ -91,7 +108,8 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" <!--de la clase usuario te coge el usuario.-->\r\n");
       out.write("\t<h2>Bienvenido ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${usuario.nombre}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(" <a href=\"login?opcion=logout\">Cierra Sesión</a></h2> <!-- para que te salga el nombre de usuario. -->\r\n");
+      out.write("</h2>\r\n");
+      out.write("\t<h3><a href=\"login?opcion=logout\">Cierra Sesión</a></h3> <!-- para que te salga el nombre de usuario. -->\r\n");
       out.write("\t");
       out.print( new java.util.Date());
       out.write("<!-- para que te aparezca la fecha. -->\r\n");
@@ -113,5 +131,61 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_c_if_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_0.setParent(null);
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${usuario.nombre =='admin'}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
+    if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("<!-- si usuario introducido es admin que te salga el boton Mantenmiento de productos. -->\r\n");
+        out.write("\t\t\t<li><a href=\"ListadoProductosServlet\">Mantenimiento productos</a></li><!-- aqui le pones el vinculo a la servlet y el titulos del boton. -->\r\n");
+        out.write("\t\t\t");
+        int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_1 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_1.setParent(null);
+    _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${usuario.nombre !='admin'}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
+    if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("<!-- si usuario introducido es admin que te salga el boton Mantenmiento de productos. -->\r\n");
+        out.write("\t\t\t<li><a href=\"ProductosListaServlet\">lista productos</a></li><!-- aqui le pones el vinculo a la jsp y el titulos del boton. -->\r\n");
+        out.write("\t\t\t");
+        int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+    return false;
   }
 }
