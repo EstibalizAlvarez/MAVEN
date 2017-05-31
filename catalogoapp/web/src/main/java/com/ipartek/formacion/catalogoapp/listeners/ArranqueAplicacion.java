@@ -5,6 +5,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import com.ipartek.formacion.catalogoapp.dal.DALFactory;
 import com.ipartek.formacion.catalogoapp.dal.DALFactoryProductos;
 import com.ipartek.formacion.catalogoapp.dal.ProductosDal;
@@ -14,10 +17,13 @@ import com.ipartek.formacion.catalogoapp.tipos.Usuario;
 
 @WebListener
 public class ArranqueAplicacion implements ServletContextListener {
+	private static Logger log = Logger.getLogger(ArranqueAplicacion.class);
 
 	public void contextInitialized(ServletContextEvent arg0) {
+		PropertyConfigurator.configure(ArranqueAplicacion.class.getClassLoader().getResource("log4j.properties"));
+
 		// cuando arranque la aplicacion que salga el siguiente mensaje:
-		System.out.println("ARRANQUE DE APLICACION");
+		log.info("ARRANQUE DE APLICACION");
 		// crear la bolsa comun.
 		ServletContext application = arg0.getServletContext();
 		// esto es para productos:
